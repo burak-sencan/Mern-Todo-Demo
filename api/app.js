@@ -5,9 +5,13 @@ const todoRouter = require('./routes/todoRoutes')
 const userRouter = require('./routes/userRoutes')
 
 const app = express()
-app.use(morgan('dev'))
-app.use(express.json())
 
+//Middlewares  
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan('dev'))
+}
+
+app.use(express.json())
 
 /*app.js url ==> routes ==> controller */
 app.use('/api/v1/todos', todoRouter)

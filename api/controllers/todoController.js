@@ -12,6 +12,27 @@ const todos = [
   },
 ]
 
+exports.checkID = (req, res, next, val) => {
+  if (req.params.id * 1 > todos.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    })
+  }
+  next()
+}
+
+exports.checkBody = (req, res, next) => {
+
+  if (!req.body.name || !req.body.complete) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Missing name or complete',
+    })
+  }
+  next()
+}
+
 exports.getAllTodos = (req, res) => {
   res.status(200).json({
     status: 'succes',
@@ -23,13 +44,6 @@ exports.getAllTodos = (req, res) => {
 exports.getTodo = (req, res) => {
   const id = req.params.id * 1
   const todo = todos.find((el) => el.id === id)
-
-  if (!todo) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID',
-    })
-  }
 
   res.status(200).json({
     status: 'succes',
@@ -57,35 +71,15 @@ exports.createTodo = (req, res) => {
 }
 
 exports.updateTodo = (req, res) => {
-  const id = req.params.id * 1
-  const todo = todos.find((el) => el.id === id)
-
-  if (!todo) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID',
-    })
-  }
-
   res.status(200).json({
     status: 'success',
     data: {
-      todo,
+      todo: '<Update Todo Here...>',
     },
   })
 }
 
 exports.deleteTodo = (req, res) => {
-  const id = req.params.id * 1
-  const todo = todos.find((el) => el.id === id)
-
-  if (!todo) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID',
-    })
-  }
-
   res.status(204).json({
     status: 'success',
     data: null,

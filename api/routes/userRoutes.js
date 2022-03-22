@@ -1,10 +1,14 @@
 const express = require('express')
+const { route } = require('../app')
 const userController = require('../controllers/userController')
 
 //routes
 const router = express.Router()
 
-router.route('/')
+
+
+router
+  .route('/')
   .get(userController.getAllUser)
   .post(userController.createUser)
 
