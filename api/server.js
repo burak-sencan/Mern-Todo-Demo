@@ -18,16 +18,8 @@ mongoose
   })
   .then((con) => console.log('DB connection succesful'))
 
-//Model
-const todoSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'A todo must have a name'],
-  },
-  complete: Boolean,
-})
 
-const Todo = mongoose.model('Todo',todoSchema)
+
 
 //start server
 const PORT = process.env.PORT || 3000

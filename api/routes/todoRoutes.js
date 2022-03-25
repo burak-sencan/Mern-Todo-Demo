@@ -2,14 +2,14 @@ const express = require('express')
 const todoController = require('../controllers/todoController')
 
 const router = express.Router()
-router.param('id', todoController.checkID)
+// router.param('id', todoController.checkID)
 
 
 
 router
   .route('/')
   .get(todoController.getAllTodos)
-  .post(todoController.checkBody,todoController.createTodo)
+  .post(todoController.createTodo)
 
 router
   .route('/:id')
