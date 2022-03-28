@@ -5,7 +5,19 @@ const todoSchema = new mongoose.Schema({
     type: String,
     required: [true, 'A todo must have a name'],
   },
-  complete: Boolean,
+  status: {
+    type: String,
+    required: [true, 'A todo must have a status'],
+    default: 'ReadyToStart',
+  },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
+  date: {
+    type: String,
+    default: Date,
+  },
 })
 
 const Todo = mongoose.model('Todo', todoSchema)
